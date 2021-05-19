@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Api.Domain.Security;
 using Api.Infra.CrossCutting.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -56,8 +57,51 @@ namespace application
           .RequireAuthenticatedUser().Build());
       });
 
+      services.AddSwaggerGen(c => 
+      {
+        c.SwaggerDoc("v1", new OpenApiInfo
+        {
+          Version = "v1",
+          Title = "Curso de API com AspNetCore 3.1 - Na Prática",
+          Description = "Arquitetura DDD",
+          TermsOfService = new System.Uri("http://www.mfrinfo.com.br"),
+          Contact = new OpenApiContact
+          {
+            Name = "Edson Shideki Kokado",
+            Email = "eskokado@gmail.com",
+            Url = new System.Uri("http://www.mfrinfo.com.br")
+          },
+          License = new OpenApiLicense
+          {
+            Name = "Termo de Licença de Uso",
+            Url = new System.Uri("http://www.mfrinfo.com.br")
+          }
+        });
+
+        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+        {
+          Description = "Entre com o Token JWT",
+          Name = "Authorization",
+          In = ParameterLocation.Header,
+          Type = SecuritySchemeType.ApiKey
+        });
+
+        c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+          {
+            new OpenApiSecurityScheme 
+            {
+              Reference = new OpenApiReference
+              {
+                Id = "Bearer",
+                Type = ReferenceType.SecurityScheme
+              }
+            }, new List<string>()
+          }
+        });
+      });
+
       services.AddControllers();
-      services.AddSwaggerGen();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
