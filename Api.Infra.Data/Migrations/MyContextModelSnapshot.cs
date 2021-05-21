@@ -44,6 +44,16 @@ namespace Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("3c7e1a85-68c3-4abc-a0dc-703883d1ca94"),
+                            CreateAt = new DateTime(2021, 5, 21, 13, 20, 54, 766, DateTimeKind.Local).AddTicks(5065),
+                            Email = "esk@email.com",
+                            Name = "Edson Shideki Kokado",
+                            UpdateAt = new DateTime(2021, 5, 21, 13, 20, 54, 768, DateTimeKind.Local).AddTicks(6713)
+                        });
                 });
 #pragma warning restore 612, 618
         }

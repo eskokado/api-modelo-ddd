@@ -10,14 +10,21 @@ namespace Api.Infra.CrossCutting.DependencyInjection
 {
     public class ConfigureRepository
     {
-        public static void ConfigureDependenciesRepository(IServiceCollection serviceCollection) 
+        public static void ConfigureDependenciesRepository(
+            IServiceCollection serviceCollection
+        )
         {
-            serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+            serviceCollection
+                .AddScoped(typeof (IRepository<>), typeof (BaseRepository<>));
             serviceCollection.AddScoped<IUserRepository, UserImplementation>();
 
-            serviceCollection.AddDbContext<MyContext> (
-                options => options.UseMySql("Server=localhost;Port=3306;Database=dbApiCourseCsharp;Uid=root;Pwd=root")
-            );
+            serviceCollection
+                .AddDbContext<MyContext>(options =>
+                    options
+                        .UseMySql("Server=localhost;Port=3306;Database=dbApiCourseCsharp;Uid=root;Pwd=root"));
+            // options =>
+            //     options
+            //         .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=dbApiCourseCsharp;Trusted_Connection=True;MultipleActiveResultSets=true;user=sa;password=sa@123456")
         }
     }
 }
