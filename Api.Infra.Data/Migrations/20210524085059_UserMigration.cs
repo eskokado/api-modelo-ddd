@@ -25,7 +25,7 @@ namespace Data.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreateAt", "Email", "Name", "UpdateAt" },
-                values: new object[] { new Guid("3c7e1a85-68c3-4abc-a0dc-703883d1ca94"), new DateTime(2021, 5, 21, 13, 20, 54, 766, DateTimeKind.Local).AddTicks(5065), "esk@email.com", "Edson Shideki Kokado", new DateTime(2021, 5, 21, 13, 20, 54, 768, DateTimeKind.Local).AddTicks(6713) });
+                values: new object[] { new Guid("1c3294c8-4360-4f6c-929e-6ccc712123cd"), new DateTime(2021, 5, 24, 5, 50, 58, 446, DateTimeKind.Local).AddTicks(1737), "esk@email.com", "Edson Shideki Kokado", new DateTime(2021, 5, 24, 5, 50, 58, 448, DateTimeKind.Local).AddTicks(3416) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",

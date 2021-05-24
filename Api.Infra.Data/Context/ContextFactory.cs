@@ -15,7 +15,7 @@ namespace Api.Infra.Data.Context
             //     "Server=(localdb)\\mssqllocaldb;Database=dbApiCourseCsharp;Trusted_Connection=True;MultipleActiveResultSets=true;user=sa;password=sa@123456";
             var optionsBuilder = new DbContextOptionsBuilder<MyContext>();
 
-            optionsBuilder.UseMySql (connectionString);
+            optionsBuilder.UseMySql (connectionString, ServerVersion.AutoDetect(connectionString));
 
             // optionsBuilder.UseSqlServer (connectionString);
             return new MyContext(optionsBuilder.Options);

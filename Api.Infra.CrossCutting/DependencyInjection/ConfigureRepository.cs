@@ -1,3 +1,4 @@
+using System;
 using Api.Domain.Interfaces;
 using Api.Domain.Repository;
 using Api.Infra.Data.Context;
@@ -5,6 +6,7 @@ using Api.Infra.Data.Implementations;
 using Api.Infra.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace Api.Infra.CrossCutting.DependencyInjection
 {
@@ -18,13 +20,26 @@ namespace Api.Infra.CrossCutting.DependencyInjection
                 .AddScoped(typeof (IRepository<>), typeof (BaseRepository<>));
             serviceCollection.AddScoped<IUserRepository, UserImplementation>();
 
-            serviceCollection
-                .AddDbContext<MyContext>(options =>
-                    options
-                        .UseMySql("Server=localhost;Port=3306;Database=dbApiCourseCsharp;Uid=root;Pwd=root"));
-            // options =>
-            //     options
-            //         .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=dbApiCourseCsharp;Trusted_Connection=True;MultipleActiveResultSets=true;user=sa;password=sa@123456")
+            if (
+                Environment.GetEnvironmentVariable("DATABASE").ToLower() ==
+                "SQLSERVER".ToLower()
+            )
+            {
+                serviceCollection
+                    .AddDbContext<MyContext>(options =>
+                        options
+                            .UseSqlServer(Environment
+                                .GetEnvironmentVariable("DATABASE")));
+            }
+            else
+            {
+                string mySqlConnectionStr = Environment.GetEnvironmentVariable("DB_CONNECTION");
+                serviceCollection.AddDbContext<MyContext>(
+                    options =>
+                      options.UseMySql(mySqlConnectionStr,
+                                          ServerVersion.AutoDetect(mySqlConnectionStr))
+                    );
+            }
         }
     }
 }

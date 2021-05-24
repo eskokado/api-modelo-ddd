@@ -20,7 +20,12 @@
         "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
       },
       "env": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DB_CONNECTION": "Server=localhost;Port=3306;Database=dbApiCourseCsharp;Uid=root;Pwd=root",
+        "DATABASE": "MYSQL",
+        // "DB_CONNECTION": "Server=(localdb)\\mssqllocaldb;Database=dbApiCourseCsharp;Trusted_Connection=True;MultipleActiveResultSets=true;user=sa;password=sa@123456",
+        // "DATABASE": "SQLSERVER",
+        "MIGRATION": "APLICAR"
       },
       "sourceFileMap": {
         "/Views": "${workspaceFolder}/Views"
