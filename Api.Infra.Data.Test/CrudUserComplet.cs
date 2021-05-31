@@ -34,6 +34,26 @@ namespace Api.Infra.Data.Test
                 Assert.Equal(_entity.Email, _record_created.Email);
                 Assert.Equal(_entity.Name, _record_created.Name);
                 Assert.False(_record_created.Id == Guid.NewGuid());
+
+                _entity = _record_created;
+                _entity.Name = Faker.Name.First();
+                _entity.Email = Faker.Internet.Email();
+
+                var _record_update = await _repositorio.UpdateAsync(_entity);
+                Assert.Equal(_entity, _record_update);
+                Assert.True(_record_update.Id == _entity.Id);
+
+                var _record_exists = await _repositorio.ExistAsync(_entity.Id);
+                Assert.True(_record_exists);
+
+                var _find_by_login = await _repositorio.FindByLogin(_entity.Email);
+                Assert.Equal(_entity, _find_by_login);
+
+                var _selected = await _repositorio.SelectAsync(_entity.Id);
+                Assert.Equal(_entity, _selected);
+
+                var _removed = await _repositorio.DeleteAsync(_entity.Id);
+                Assert.True(_removed);
             }
         }
     }
