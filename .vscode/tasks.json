@@ -37,6 +37,15 @@
         "/consoleloggerparameters:NoSummary"
       ],
       "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Api.Infra.Data.Tests",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "test",
+        "${workspaceFolder}/Api.Infra.Data.Test/Api.Infra.Data.Test.csproj",
+      ]
     }
   ]
 }
