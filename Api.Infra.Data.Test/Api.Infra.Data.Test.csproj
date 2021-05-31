@@ -17,13 +17,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Api.Infra.Data\Data.csproj" />
     <ProjectReference Include="..\Api.Infra.CrossCutting\CrossCutting.csproj" />
     <ProjectReference Include="..\Api.Domain\Domain.csproj" />
-    <ProjectReference Include="..\Api.Application\application.csproj" />
+    <!-- <ProjectReference Include="..\Api.Application\application.csproj" /> -->
   </ItemGroup>
 
 </Project>
