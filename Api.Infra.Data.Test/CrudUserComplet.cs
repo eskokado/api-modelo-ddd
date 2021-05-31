@@ -26,13 +26,13 @@ namespace Api.Infra.Data.Test
                 UserImplementation _repositorio = new UserImplementation(context);
                 UserEntity _entity = new UserEntity 
                 {
-                    Email = "teste@mail.com",
-                    Name = "Teste"
+                    Email = Faker.Internet.Email(),
+                    Name = Faker.Name.FullName()
                 };
                 var _record_created = await _repositorio.InsertAsync(_entity);
                 Assert.NotNull(_record_created);
-                Assert.Equal("teste@mail.com", _record_created.Email);
-                Assert.Equal("Teste", _record_created.Name);
+                Assert.Equal(_entity.Email, _record_created.Email);
+                Assert.Equal(_entity.Name, _record_created.Name);
                 Assert.False(_record_created.Id == Guid.NewGuid());
             }
         }
