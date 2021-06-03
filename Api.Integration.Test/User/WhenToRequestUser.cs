@@ -63,6 +63,16 @@ namespace Api.Integration.Test.User
             Assert.Equal(updateUserDto.Id, recordUpdate.Id);
             Assert.NotEqual(recordPost.Name, recordUpdate.Name);
             Assert.NotEqual(recordPost.Email, recordUpdate.Email);
+
+            // Get By Id
+            response = await client.GetAsync($"{hostApi}/users/{recordUpdate.Id}");
+            jsonResult = await response.Content.ReadAsStringAsync();
+            var recordSelected = JsonConvert.DeserializeObject<UserDto>(jsonResult);
+
+            Assert.NotNull(recordSelected);
+            Assert.Equal(recordSelected.Id, recordUpdate.Id);
+            Assert.Equal(recordSelected.Name, recordUpdate.Name);
+            Assert.Equal(recordSelected.Email, recordUpdate.Email);
         }
     }
 }
