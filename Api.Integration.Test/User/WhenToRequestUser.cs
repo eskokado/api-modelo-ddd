@@ -73,6 +73,14 @@ namespace Api.Integration.Test.User
             Assert.Equal(recordSelected.Id, recordUpdate.Id);
             Assert.Equal(recordSelected.Name, recordUpdate.Name);
             Assert.Equal(recordSelected.Email, recordUpdate.Email);
+
+            // Delete
+            response = await client.DeleteAsync($"{hostApi}/users/{recordUpdate.Id}");
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+            // Get By Id After Delete
+            response = await client.GetAsync($"{hostApi}/users/{recordUpdate.Id}");
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
     }
 }
