@@ -1,6 +1,7 @@
 using System;
 using Api.Domain.Entities;
 using Api.Infra.Data.Mapping;
+using Api.Infra.Data.Seeds;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api.Infra.Data.Context
@@ -19,15 +20,11 @@ namespace Api.Infra.Data.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<UserEntity>(new UserMap().Configure);
 
-            modelBuilder
-                .Entity<UserEntity>()
-                .HasData(new UserEntity {
-                    Id = Guid.NewGuid(),
-                    Name = "Edson Shideki Kokado",
-                    Email = "esk@email.com",
-                    CreateAt = DateTime.Now,
-                    UpdateAt = DateTime.Now
-                });
+            modelBuilder.Entity<UfEntity>(new UfMap().Configure);
+            modelBuilder.Entity<CountyEntity>(new CountyMap().Configure);
+            modelBuilder.Entity<CepEntity>(new CepMap().Configure);
+
+            UfSeeds.Ufs(modelBuilder);
         }
     }
 }
