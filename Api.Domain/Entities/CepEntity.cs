@@ -2,7 +2,7 @@ using System;
 
 namespace Api.Domain.Entities
 {
-    public class CepEntity
+    public class CepEntity : BaseEntity
     {
         public string Cep { get; set; }
 
