@@ -67,7 +67,7 @@ namespace Api.Service.Test.Uf
             ufDtoUpdate = new UfDtoUpdate()
             {
                 Id = UfId,
-                Name = UfName,
+                Name = UfNameUpdate,
                 Initials = UfInitials,
             };
 
