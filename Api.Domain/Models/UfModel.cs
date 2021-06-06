@@ -3,7 +3,7 @@ namespace Api.Domain.Models
     public class UfModel : BaseModel
     {
         private string _initials;
-        public string Initial
+        public string Initials
         {
             get { return _initials; }
             set { _initials = value; }
