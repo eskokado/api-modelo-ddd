@@ -7,10 +7,16 @@ namespace Api.Domain.Interfaces.Services.Cep
 {
     public interface ICepService
     {
-         Task<CepDto> Get (Guid id);
-         Task<IEnumerable<CepDto>> GetAll();
-         Task<CepDtoCreateResult> Post(CepDtoCreate user);
-         Task<CepDtoUpdateResult> Put(CepDtoUpdate user);
-         Task<bool> Delete(Guid id); 
+        Task<CepDto> Get(Guid id);
+
+        Task<IEnumerable<CepDto>> GetAll();
+
+        Task<CepDtoCreateResult> Post(CepDtoCreate cep);
+
+        Task<CepDtoUpdateResult> Put(CepDtoUpdate cep);
+
+        Task<bool> Delete(Guid id);
+
+        Task<CepDto> FindCompleteByCep(string cep);
     }
 }

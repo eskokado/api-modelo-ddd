@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Api.Domain.Dtos.User;
 using Api.Domain.Entities;
-using Api.Domain.Interfaces;
 using Api.Domain.Interfaces.Services.User;
 using Api.Domain.Models;
+using Api.Domain.Repository;
 using AutoMapper;
 
 namespace Api.Service.Services
 {
   public class UserService : IUserService
   {
-    private readonly IRepository<UserEntity> _repository;
+    private readonly IUserRepository _repository;
     private readonly IMapper _mapper;
-    public UserService(IRepository<UserEntity> repository, IMapper mapper)
+    public UserService(IUserRepository repository, IMapper mapper)
     {
       _repository = repository;
       _mapper = mapper;

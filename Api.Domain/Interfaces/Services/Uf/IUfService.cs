@@ -7,11 +7,16 @@ namespace Api.Domain.Interfaces.Services.Uf
 {
     public interface IUfService
     {
-         
-         Task<UfDto> Get (Guid id);
-         Task<IEnumerable<UfDto>> GetAll();
-         Task<UfDtoCreateResult> Post(UfDtoCreate user);
-         Task<UfDtoUpdateResult> Put(UfDtoUpdate user);
-         Task<bool> Delete(Guid id); 
+        Task<UfDto> Get(Guid id);
+
+        Task<IEnumerable<UfDto>> GetAll();
+
+        Task<UfDtoCreateResult> Post(UfDtoCreate uf);
+
+        Task<UfDtoUpdateResult> Put(UfDtoUpdate uf);
+
+        Task<bool> Delete(Guid id);
+
+        Task<IEnumerable<UfDto>> FindByName(string name);
     }
 }

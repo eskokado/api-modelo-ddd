@@ -9,8 +9,11 @@ namespace Api.Domain.Interfaces.Services.County
     {
          Task<CountyDto> Get (Guid id);
          Task<IEnumerable<CountyDto>> GetAll();
-         Task<CountyDtoCreateResult> Post(CountyDtoCreate user);
-         Task<CountyDtoUpdateResult> Put(CountyDtoUpdate user);
+         Task<CountyDtoCreateResult> Post(CountyDtoCreate county);
+         Task<CountyDtoUpdateResult> Put(CountyDtoUpdate county);
          Task<bool> Delete(Guid id); 
+         Task<CountyDto> FindCompleteByIBGE(int codeIBGE);
+         Task<IEnumerable<CountyDto>> FindCompleteByName(string name);
+
     }
 }
