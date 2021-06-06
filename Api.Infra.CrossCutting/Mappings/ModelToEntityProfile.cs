@@ -10,6 +10,12 @@ namespace Api.Infra.CrossCutting.Mappings
         {
             CreateMap<UserEntity, UserModel>()
                 .ReverseMap();
+            CreateMap<UfEntity, UfModel>()
+                .ReverseMap();
+            CreateMap<CountyEntity, CountyModel>()
+                .ReverseMap();
+            CreateMap<CepEntity, CepModel>()
+                .ReverseMap();
         }
     }
 }
