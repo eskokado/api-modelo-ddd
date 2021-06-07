@@ -6,7 +6,6 @@ using Api.Infra.Data.Implementations;
 using Api.Infra.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace Api.Infra.CrossCutting.DependencyInjection
 {
@@ -19,6 +18,9 @@ namespace Api.Infra.CrossCutting.DependencyInjection
             serviceCollection
                 .AddScoped(typeof (IRepository<>), typeof (BaseRepository<>));
             serviceCollection.AddScoped<IUserRepository, UserImplementation>();
+            serviceCollection.AddScoped<IUfRepository, UfImplementation>();
+            serviceCollection.AddScoped<ICountyRepository, CountyImplementation>();
+            serviceCollection.AddScoped<ICepRepository, CepImplementation>();
 
             if (
                 Environment.GetEnvironmentVariable("DATABASE").ToLower() ==
