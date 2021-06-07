@@ -134,7 +134,7 @@ namespace Api.Application.Controllers
 
         [Authorize("Bearer")]
         [HttpGet]
-        [Route("buscar/{name}")]
+        [Route("findByName/{name}")]
         public async Task<ActionResult> FindByName(string name) 
         {
             if (!ModelState.IsValid) 
