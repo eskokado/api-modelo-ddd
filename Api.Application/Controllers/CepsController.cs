@@ -1,9 +1,8 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using Api.Domain.Dtos.User;
-using Api.Domain.Entities;
-using Api.Domain.Interfaces.Services.User;
+using Api.Domain.Dtos.Cep;
+using Api.Domain.Interfaces.Services.Cep;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +10,10 @@ namespace Api.Application.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class CepsController : ControllerBase
     {
-        private readonly IUserService _service;
-        public UsersController(IUserService service)
+        private readonly ICepService _service;
+        public CepsController(ICepService service)
         {
             _service = service;
         }
@@ -40,7 +39,7 @@ namespace Api.Application.Controllers
 
         [Authorize("Bearer")]
         [HttpGet]
-        [Route("{id}", Name = "GetWithId")]
+        [Route("{id}", Name = "GetCepWithId")]
         public async Task<ActionResult> Get(Guid id) 
         {
             if (!ModelState.IsValid) 
@@ -63,8 +62,9 @@ namespace Api.Application.Controllers
             }
         }
 
+        [Authorize("Bearer")]
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] UserDtoCreate user) 
+        public async Task<ActionResult> Post([FromBody] CepDtoCreate dto) 
         {
             if (!ModelState.IsValid) 
             {
@@ -73,10 +73,10 @@ namespace Api.Application.Controllers
 
             try
             {
-                var result = await _service.Post(user);
+                var result = await _service.Post(dto);
                 if (result != null) 
                 {
-                    return Created(new Uri(Url.Link("GetWithId", new {id = result.Id})), result);
+                    return Created(new Uri(Url.Link("GetCepWithId", new {id = result.Id})), result);
                 }
                 else
                 {
@@ -91,7 +91,7 @@ namespace Api.Application.Controllers
 
         [Authorize("Bearer")]
         [HttpPut]
-        public async Task<ActionResult> Put([FromBody] UserDtoUpdate user) 
+        public async Task<ActionResult> Put([FromBody] CepDtoUpdate dto) 
         {
             if (!ModelState.IsValid) 
             {
@@ -100,7 +100,7 @@ namespace Api.Application.Controllers
 
             try
             {
-                var result = await _service.Put(user);
+                var result = await _service.Put(dto);
                 if (result == null)
                     return BadRequest();
 
@@ -125,6 +125,26 @@ namespace Api.Application.Controllers
             try
             {
                 return Ok(await _service.Delete(id));
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode ((int) HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+        [Authorize("Bearer")]
+        [HttpGet]
+        [Route("findByCep/{cep}")]
+        public async Task<ActionResult> FindCompleteByCep(string cep) 
+        {
+            if (!ModelState.IsValid) 
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                return Ok(await _service.FindCompleteByCep(cep));
             }
             catch (ArgumentException e)
             {
