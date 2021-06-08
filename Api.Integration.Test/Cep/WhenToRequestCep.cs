@@ -9,7 +9,7 @@ using Api.Domain.Dtos.County;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace Api.Integration.Test.County
+namespace Api.Integration.Test.Cep
 {
     public class WhenToRequestCep : BaseIntegration
     {

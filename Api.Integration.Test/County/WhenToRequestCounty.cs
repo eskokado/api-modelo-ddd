@@ -17,7 +17,7 @@ namespace Api.Integration.Test.County
         private Guid _ufId { get; set; }
 
         [Fact]
-        public async Task ItIsPossibleToRunUserCrud() {
+        public async Task ItIsPossibleToRunCountyCrud() {
             await AddToken();
             _name = Faker.Address.City();
             _codeIBGE = Faker.RandomNumber.Next(10000000, 99999999);
