@@ -12,6 +12,13 @@ namespace Api.Infra.Data.Seeds
             modelBuilder.Entity<UserEntity>().HasData(
                 new UserEntity {
                     Id = Guid.NewGuid(),
+                    Name = "User Padrão",
+                    Email = "user@example.com",
+                    CreateAt = DateTime.UtcNow,
+                    UpdateAt = DateTime.UtcNow
+                },
+                new UserEntity {
+                    Id = Guid.NewGuid(),
                     Name = "Edson Shideki Kokado",
                     Email = "eskokado@email.com",
                     CreateAt = DateTime.UtcNow,

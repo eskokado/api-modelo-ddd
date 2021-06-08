@@ -104,20 +104,20 @@ namespace application
                             Title =
                                 "Curso de API com AspNetCore 3.1 - Na Prática",
                             Description = "Arquitetura DDD",
-                            TermsOfService =
-                                new System.Uri("http://www.mfrinfo.com.br"),
+                            // TermsOfService =
+                            //     new System.Uri("http://www.mfrinfo.com.br"),
                             Contact =
                                 new OpenApiContact {
                                     Name = "Edson Shideki Kokado",
                                     Email = "eskokado@gmail.com",
-                                    Url =
-                                        new System.Uri("http://www.mfrinfo.com.br")
+                                    // Url =
+                                    //     new System.Uri("http://www.mfrinfo.com.br")
                                 },
                             License =
                                 new OpenApiLicense {
                                     Name = "Termo de Licença de Uso",
-                                    Url =
-                                        new System.Uri("http://www.mfrinfo.com.br")
+                                    // Url =
+                                    //     new System.Uri("http://www.mfrinfo.com.br")
                                 }
                         });
 

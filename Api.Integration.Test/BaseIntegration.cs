@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Api.Infra.Data.Seeds;
 
 namespace Api.Integration.Test
 {
@@ -42,7 +43,7 @@ namespace Api.Integration.Test
         {
             var loginDto = new LoginDto()
             {
-                Email = "esk@email.com"
+                Email = "user@example.com"
             };
 
             var resultLogin = await PostJsonAsync(loginDto, $"{hostApi}/login", client);

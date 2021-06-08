@@ -24,6 +24,7 @@ namespace Api.Infra.Data.Context
             modelBuilder.Entity<CountyEntity>(new CountyMap().Configure);
             modelBuilder.Entity<CepEntity>(new CepMap().Configure);
 
+            UserSeeds.Users(modelBuilder);
             UfSeeds.Ufs(modelBuilder);
         }
     }
