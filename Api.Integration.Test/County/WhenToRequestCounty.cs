@@ -91,7 +91,7 @@ namespace Api.Integration.Test.County
             Assert.NotNull(listFromJson);
             Assert.True(listFromJson.Count()>0);
 
-            // findByName
+            // findByIBGE
             response = await client.GetAsync($"{hostApi}/counties/findByIBGE/{recordUpdate.CodeIBGE}");
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
